@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import "./style.css";
 
-function DataTableBody({ mode, products}) {
+function DataTableBody({ mode, setMode, products, setProducts, isDeleting, setDeleting}) {
     // const [ isChecks, setChecks ] = useState([]);
     const [ viewProducts, setViewProducts ] = useState([]); // 하나는 배열
     const [ checkedAll, setCheckedAll] = useState(false); // 하나는 false로 초기화 
 
     useEffect(() => {
-        resetViewProducts();
-        setCheckedAll(false);
+        if(mode === 0) {
+            resetViewProducts();
+            setCheckedAll(false);
+        }
+       
     }, [products, mode]); // products와 mode의 값이 바뀌면 useEffect가 실행이 될 것이다.
 
     useEffect(() => {
@@ -19,6 +22,20 @@ function DataTableBody({ mode, products}) {
             setCheckedAll(true);
         }
     }, [viewProducts]);
+
+    useEffect(() => {
+        if(isDeleting) {
+            setProducts([ ...viewProducts
+                .filter(viewProduct => viewProduct.isChecked === false)
+                .map(viewProduct => {
+                    const { isChecked, ...product } = viewProduct;
+                    return product;
+                })
+            ]);
+            setMode(0);
+            setDeleting(false);
+        }
+    }, [isDeleting]);
 
     const resetViewProducts = () => {
         setViewProducts([ ...products.map(product => ({...product, isChecked: false})) ]); // 새로운 product 배열을 만들겠다 
