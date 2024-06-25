@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import "./style.css";
 
-function DataTableBody({ mode, setMode, products, setProducts, isDeleting, setDeleting}) {
+function DataTableBody({ mode, setMode, products, setProducts, isDeleting, setDeleting, setEditProductId }) {
     // const [ isChecks, setChecks ] = useState([]);
     const [ viewProducts, setViewProducts ] = useState([]); // 하나는 배열
     const [ checkedAll, setCheckedAll] = useState(false); // 하나는 false로 초기화 
 
+
+    // 추가
     useEffect(() => {
         if(mode === 0) {
             resetViewProducts();
@@ -36,6 +38,15 @@ function DataTableBody({ mode, setMode, products, setProducts, isDeleting, setDe
             setDeleting(false);
         }
     }, [isDeleting]);
+
+    // 수정
+    useEffect(() => {
+        if(mode === 2) {
+            const [ selectedProduct ] = viewProducts.filter(product => product.isChecked);
+           
+            setEditProductId(!selectedProduct ? 0 : selectedProduct.id);
+        }      
+    }, [viewProducts]);
 
     const resetViewProducts = () => {
         setViewProducts([ ...products.map(product => ({...product, isChecked: false})) ]); // 새로운 product 배열을 만들겠다 
@@ -71,6 +82,7 @@ function DataTableBody({ mode, setMode, products, setProducts, isDeleting, setDe
             });
         }
 
+        // 삭제
         if(mode === 3) {
             setViewProducts(viewProducts => {
                 return [ ...viewProducts.map(product => {
