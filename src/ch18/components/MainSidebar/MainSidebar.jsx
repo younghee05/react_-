@@ -1,13 +1,16 @@
 /** @jsxImportSource @emotion/react */
+import { useRecoilState } from 'recoil';
 import MainSiderbarBody from './MainSidebarBody/MainSiderbarBody';
 import MainSidebarHeader from './MainSidebarHeader/MainSidebarHeader';
 import * as s from './style';
+import { mainSidebarShowAtom } from '../../atoms/mainSidebarShowAtom';
 
-function MainSidebar({isMainSidebarShow, setMainSidebarShow}) {
+function MainSidebar() {
+    const [ mainSidebarShow ] = useRecoilState(mainSidebarShowAtom);
+
     return (
-        <div css={s.layout(isMainSidebarShow)}>
-            <MainSidebarHeader setMainSidebarShow={setMainSidebarShow}/>
-
+        <div css={s.layout(mainSidebarShow)}>
+            <MainSidebarHeader />
             <MainSiderbarBody />
 
         </div>

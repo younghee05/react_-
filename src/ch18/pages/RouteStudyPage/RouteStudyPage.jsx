@@ -15,12 +15,14 @@ function RouteStudyPage(props) {
                     <Link to={"/routestudy/page2"}><li>2번페이지</li></Link>
                     <Link to={"/routestudy/page3"}><li>3번페이지</li></Link>
                 </ul>
+                <div>
+                    <Routes>
+                        <Route path="/page1/*" element={<RouteStudySubPage1 />}/>
+                        <Route path="/page2" element={<div>페이지2</div>}/>
+                        <Route path="/page3" element={<div>페이지3</div>}/>
+                    </Routes>
+                </div>
             </div>
-                <Routes>
-                    <Route path="/page1" element={<div><RouteStudySubPage1 /></div>}/>
-                    <Route path="/page2" element={<div>페이지2</div>}/>
-                    <Route path="/page3" element={<div>페이지3</div>}/>
-                </Routes>
             
         </MainContainer>
     );
