@@ -1,0 +1,69 @@
+html, body {
+    box-sizing: border-box;
+    margin: 0;
+    height: 100%;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    
+}
+
+.box {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    height: 500px;
+    border: 1px solid #dbdbdb;
+}
+
+h2 {
+    margin-top: 40px;
+}
+
+p {
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+input {
+    width: 100%;
+    height: 30px;
+    border: 1px solid #dbdbdb;
+    border-radius: 6px;
+}
+
+.input-box {
+    box-sizing: border-box;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+}
+
+.save-button {
+    box-sizing: border-box;
+    margin-top: 20px;
+    width: 101%;
+    height: 40px;
+    background-color: #09aa5c;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
